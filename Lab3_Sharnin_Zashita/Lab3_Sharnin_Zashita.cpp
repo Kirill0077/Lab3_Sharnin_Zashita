@@ -415,7 +415,8 @@ int main()
 	int nRetCode = 0;
 
 	HMODULE hModule = ::GetModuleHandle(nullptr);
-
+	
+	setlocale(LC_ALL, "Russian");
 	if (hModule != nullptr)
 	{
 		// initialize MFC and print and error on failure
@@ -430,11 +431,11 @@ int main()
 			CryptoAPI crypto;
 			while (true)
 			{
-				cout << "Choose action:" << endl
-					<< "0)Exit" << endl
-					<< "1)Generate public/private pair" << endl
-					<< "2)Encrypt file" << endl
-					<< "3)Decrypt file" << endl;
+				cout << "Я скажу в кратце:" << endl
+					<< "0) Вышел отсюда" << endl
+					<< "1) Сгенерировал быстраааааа ключ свой" << endl
+					<< "2)Макс чёткий поц, тут ты будешь зашифровывать файл" << endl
+					<< "3)А тут блять ррааааасшифровывать" << endl;
 				int selection;
 				cin >> selection;
 				switch (selection) {
@@ -445,7 +446,7 @@ int main()
 					  break;
 				case 1: {
 					string password;
-					cout << "Enter password" << endl;
+					cout << "Пароль придумал быстро : " << endl;
 					cin >> password;
 					generate_all_keys(crypto, password);
 				}
@@ -453,7 +454,7 @@ int main()
 				case 2: { ////// Encrypt
 					string coding_filepath;
 					import_public_key(crypto);
-					cout << "Enter file path" << endl;
+					cout << "ну ка сука назвал файл куда будешь помещать публичный ключ" << endl;
 					cin >> coding_filepath;
 					encrypt_file(crypto, coding_filepath);
 				}
@@ -461,11 +462,11 @@ int main()
 				case 3: { /////// Decrypt
 					string decoding_filepath;
 					string password;
-					cout << "Enter password" << endl;
+					cout << "Вводи пароль зябрик" << endl;
 					cin >> password;
 					import_private_key(crypto, password);
 
-					cout << "Enter file path" << endl;
+					cout << "Enter file path, хы бля" << endl;
 					cin >> decoding_filepath;
 					decrypt_file(crypto, decoding_filepath);
 				}
